@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  spacex_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '/home/vladimir/Документы/spacex:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
