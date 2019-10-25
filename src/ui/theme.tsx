@@ -1,8 +1,20 @@
 import React from 'react'
 import { createMuiTheme, createStyles } from '@material-ui/core/styles'
 
+import { fonts } from './fonts'
 
-const themeConfig ={
+
+const themeConfig = {
+  typography: {
+    fontFamily: 'Catamaran, Arial',
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-face': fonts
+      },
+    },
+  },
   palette: {
     // primary: blue,
   },
@@ -36,6 +48,7 @@ export const globalStyles = createStyles({
     },
     body: {
       margin: '0 !important',
+      backgroundColor: '#e5e7e9'
     },
     '#root': {
       minHeight: '100vh',
