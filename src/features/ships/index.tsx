@@ -1,0 +1,1 @@
+export { shipsRoutes } from './routes'
