@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink as RouterLink } from 'react-router-dom'
-import { AppBar, Toolbar, Link, Button, Box } from '@material-ui/core'
+import { AppBar, Toolbar, Link, Button, Box, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 
 
@@ -25,7 +25,7 @@ export const Navbar = ({ toggleTheme }: Navbar) => {
     <AppBar position="static" color="inherit">
       <Toolbar>
         <Box component="nav" className={classes.nav}>
-          <Link to="/ships" component={RouterLink}>Ships</Link>
+          <Link to="/ships" component={RouterLink}><Typography>Ships</Typography></Link>
         </Box>
         <Button type="button" size="small" onClick={toggleTheme}>theme</Button>
       </Toolbar>
