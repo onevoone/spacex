@@ -1,3 +1,8 @@
+export interface Mission {
+  flight: string;
+  name: string;
+}
+
 export interface Ship {
   id: string;
   image: string | null;
@@ -29,10 +34,7 @@ export interface ShipDetails {
     weight_kg: number | null;
     speed_kn: number | null;
     roles: string[];
-    missions: {
-      flight: string;
-      name: string;
-    };
+    missions: Mission[];
     imo: string | null;
     mmsi: string | null;
     home_port: string | null;
