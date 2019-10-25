@@ -3,8 +3,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { ThemeProvider, withStyles } from '@material-ui/styles'
 
-import { client } from './config'
 import { RoutesSwitcher } from './routes'
+import { apolloClientConfig } from './config'
 import { useTheme, globalStyles } from './ui'
 import { Navbar, Main } from './features/common'
 
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   
   return (
     <BrowserRouter>
-      <ApolloProvider client={client}>
+      <ApolloProvider client={apolloClientConfig}>
 
         <ThemeProvider theme={theme}>
           <Navbar toggleTheme={toggleTheme} />
