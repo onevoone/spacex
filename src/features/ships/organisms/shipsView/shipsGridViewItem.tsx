@@ -6,8 +6,8 @@ import {
   CardContent, CardMedia, Button, Typography
 } from '@material-ui/core'
 
-import { Ship } from '../types'
-import { defaultImageSrc } from '../../../assets'
+import { Ship } from '../../types'
+import { defaultImageSrc } from '../../../../assets'
 
 
 const useStyles = makeStyles({
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 })
 
 
-export const ShipCard = ({ name, type, home_port, id, image }: Ship) => {
+export const ShipGridViewItem = ({ name, type, home_port, id, image }: Ship) => {
   const { push } = useHistory()
   const classes = useStyles()
 

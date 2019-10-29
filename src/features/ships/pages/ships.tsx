@@ -1,29 +1,23 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
 import { useQuery } from '@apollo/react-hooks'
 
+import { ShipsData } from '../types'
 import { Loading } from '../../common'
 import { GET_SHIPS } from '../requests'
-import { Ship, ShipsData } from '../types'
-import { ShipCard } from '../organisms/shipCard'
+import { connectStore } from '../../../tools'
+import { ShipsListView, ShipsGridView } from '../organisms/shipsView'
 
 
-export const Ships = () => {
-  const { loading, error, data } = useQuery<ShipsData>(GET_SHIPS)
+export const Ships = connectStore()(({ store: { shipsView } }) => {
+  const { loading, data } = useQuery<ShipsData>(GET_SHIPS)
 
   if (loading) {
     return <Loading />
   }
 
-  const shipsView = data && data.ships.map((obj: Ship, k: number) => (
-    <Grid key={k} item>
-      <ShipCard {...obj} />
-    </Grid>
-  ))
 
-  return (
-    <Grid container justify="center" spacing={6}>
-      {shipsView}
-    </Grid>
-  )
-}
+  return {
+    "list": <ShipsListView ships={data!.ships} />,
+    "grid": <ShipsGridView ships={data!.ships} />
+  }[shipsView.view]
+})
