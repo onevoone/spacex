@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink as RouterLink } from 'react-router-dom'
-import { AppBar, Toolbar, Link, Button, Box, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Link, Button, Box, Typography } from '@material-ui/core'
+
+import { ShipsViewToggler } from '../molecules'
 
 
 interface Navbar {
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 
-export const Navbar = ({ toggleTheme }: Navbar) => {
+export const Navbar = ({ toggleTheme, ...props }: Navbar) => {
   const classes = useStyles()
 
   return (
@@ -27,6 +29,7 @@ export const Navbar = ({ toggleTheme }: Navbar) => {
         <Box component="nav" className={classes.nav}>
           <Link to="/ships" component={RouterLink}><Typography>Ships</Typography></Link>
         </Box>
+        <ShipsViewToggler />
         <Button type="button" size="small" onClick={toggleTheme}>theme</Button>
       </Toolbar>
     </AppBar>
