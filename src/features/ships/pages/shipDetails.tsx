@@ -1,12 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import { useQuery } from '@apollo/react-hooks'
-import { Grid, Box, Typography, Paper, makeStyles, Theme, Link } from '@material-ui/core'
+import { Grid, Typography, Paper, makeStyles, Theme, Link } from '@material-ui/core'
 
 import { Loading } from '../../common'
+import { DetailsText } from '../atoms'
+import { MissionsPanel } from '../molecules'
 import { GET_SHIP_DETAILS } from '../requests'
 import { ShipDetails as ShipDetailsData, ShipDetailsVars } from '../types'
-import { MissionsPanel } from '../molecules'
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -27,14 +28,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 
-const Text = ({ label, value, expression }: { label: string; value: string|number|null; expression?: object }) => {
-  if (!value) {
-    return null
-  }
-  return <Typography component="p">{label}: {value}</Typography>
-}
-
-
 export const ShipDetails = () => {
   const { id } = useParams()
   const classes = useStyles()
@@ -50,7 +43,6 @@ export const ShipDetails = () => {
 
 
   const ship = data && data.ship
-  console.log('ship: ', ship);
 
   if (ship) {
     return (
@@ -66,28 +58,38 @@ export const ShipDetails = () => {
 
           <Grid item>
             <Paper className={classes.papper}>
-              <Text label="IMO" value={ship.imo} />
-              <Text label="MMSI" value={ship.mmsi} />
-              <Text label="Type" value={ship.type} />
-              <Text label="Class" value={ship.class} />
-              <Text label="Year Built" value={ship.year_built} />
-              <Text label="Status" value={ship.status} />
+              <DetailsText label="IMO" value={ship.imo} />
+              <DetailsText label="MMSI" value={ship.mmsi} />
+              <DetailsText label="Type" value={ship.type} />
+              <DetailsText label="Class" value={ship.class} />
+              <DetailsText label="Year Built" value={ship.year_built} />
+              <DetailsText label="Status" value={ship.status} />
               <Typography component="p">Weight lbs / kg: {ship.weight_lbs} / {ship.weight_kg}</Typography>
-              <Text label="Speed" value={ship.speed_kn} />
+              <DetailsText label="Speed" value={ship.speed_kn} />
             </Paper>
           </Grid>
 
           <Grid item>
             <Paper className={classes.papper}>
-              <Text label="Active" value={String(ship.active)} />
-              <Text label="Attempted Landings" value={ship.attempted_landings} />
-              <Text label="Successful Landings" value={ship.successful_landings} />
-              {ship.url && <Typography component="p">Url: <Link href={ship.url} target="_blank">Source</Link></Typography>}
+              <DetailsText label="Active" value={ship.active ? "Yes" : "No"} />
+              <DetailsText label="Attempted Landings" value={ship.attempted_landings} />
+              <DetailsText label="Successful Landings" value={ship.successful_landings} />
+              <DetailsText 
+                label="Url" 
+                value={<Link href={String(ship.url)} target="_blank">Source</Link>} 
+                expression={!!ship.url}
+              />
               <Typography component="p">Roles: {ship.roles}</Typography>
-              <Text label="Home Port" value={ship.home_port} />
-              <Text label="Course Deg" value={ship.course_deg} />
-              <Text label="Abs" value={ship.abs} />
-              <Typography component="p">position: {JSON.stringify(ship.position)}</Typography>
+              <DetailsText label="Home Port" value={ship.home_port} />
+              <DetailsText label="Course Degree" value={ship.course_deg} />
+              <DetailsText label="Abs" value={ship.abs} />
+              <Typography component="p">
+                Latitude / Longitude:&nbsp;
+                <Link href={`https://www.marinetraffic.com/en/ais/home/centerx:${ship.position.longitude}/centery:${ship.position.latitude}/zoom:13`} target="_blank">
+                  {ship.position.latitude} / {ship.position.longitude}
+                </Link>
+              </Typography>
+              {/* <Typography component="p">position: {JSON.stringify(ship.position)}</Typography> */}
             </Paper>
           </Grid>
 
