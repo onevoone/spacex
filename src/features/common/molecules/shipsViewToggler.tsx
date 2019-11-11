@@ -16,6 +16,7 @@ interface TogglerProps {
 
 const useStyles = makeStyles({
   root: {
+    width: 'max-content',
     marginRight: 10,
   },
 })
@@ -46,7 +47,7 @@ export const ShipsViewToggler = enhance(({ store: { shipsView } }) => {
   }
 
   return (
-    <Grid container justify="flex-end" spacing={2} className={classes.root}>
+    <Grid container justify="flex-end" className={classes.root}>
       <ButtonGroup size="small" aria-label="small outlined button group">
         <Button variant="outlined" size="small" color={isListActiveView} onClick={change2ListView}>list</Button>
         <Button variant="outlined" size="small" color={isGridActiveView} onClick={change2GridView}>grid</Button>
