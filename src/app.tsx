@@ -6,9 +6,9 @@ import { ThemeProvider, withStyles } from '@material-ui/styles'
 
 import { store } from './store'
 import { RoutesSwitcher } from './routes'
+import { Navbar } from './features/common'
 import { apolloClientConfig } from './config'
 import { useTheme, globalStyles } from './ui'
-import { Navbar, Main } from './features/common'
 
 
 const App = () => {
@@ -21,9 +21,7 @@ const App = () => {
 
           <ThemeProvider theme={theme}>
             <Navbar toggleTheme={toggleTheme} />
-            <Main>
               <RoutesSwitcher />
-            </Main>
           </ThemeProvider>
           
         </ApolloProvider>

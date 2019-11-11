@@ -1,38 +1,18 @@
 import React from 'react'
 import { createMuiTheme, createStyles } from '@material-ui/core/styles'
 
-import { fonts } from './fonts'
-
-
-const themeConfig = {
-  typography: {
-    fontFamily: 'Catamaran, Arial',
-  },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '@font-face': fonts
-      },
-    },
-  },
-  palette: {
-    // primary: blue,
-  },
-}
+import { themeVars, themeConfig } from './config'
 
 
 export const useTheme = () => {
-  const [mode, setMode] = React.useState("light")
+  const [mode, setMode] = React.useState(themeVars.DARK)
 
   const toggleTheme = () => {
-    const next = mode === "light" ? "dark" : "light"
+    const next = mode === themeVars.DARK ? themeVars.LIGHT : themeVars.DARK
     setMode(next)
   }
 
-  const theme = React.useMemo(() => {
-    const nextTheme = mode === "light" ? themeConfig : themeConfig
-    return createMuiTheme(nextTheme)
-  }, [mode])
+  const theme = React.useMemo(() => createMuiTheme(themeConfig[mode]), [mode])
 
   return { theme, toggleTheme }
 }

@@ -1,1 +1,1 @@
-export { useTheme, globalStyles } from './theme'
+export * from './theme'
