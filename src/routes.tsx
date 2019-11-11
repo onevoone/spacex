@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import { aboutRoutes } from './features/about'
 import { shipsRoutes } from './features/ships'
+import { commonRoutes } from './features/common'
 
 
 interface SingleRoute {
@@ -15,6 +16,7 @@ interface SingleRoute {
 const routes = [
 	...aboutRoutes,
 	...shipsRoutes,
+	...commonRoutes,
 	{ 
 		path: "**",
 		component: () => <div>not found</div>
