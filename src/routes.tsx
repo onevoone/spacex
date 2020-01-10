@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import { homeRoutes } from './features/home'
 import { aboutRoutes } from './features/about'
 import { shipsRoutes } from './features/ships'
 import { commonRoutes } from './features/common'
@@ -14,6 +15,7 @@ interface SingleRoute {
 
 
 const routes = [
+	...homeRoutes,
 	...aboutRoutes,
 	...shipsRoutes,
 	...commonRoutes,

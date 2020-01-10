@@ -6,5 +6,5 @@ export const commonRoutes = [
     path: "/",
 		exact: true,
 		component: MainPage,
-	}
+	},
 ]
