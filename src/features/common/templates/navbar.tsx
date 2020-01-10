@@ -7,10 +7,21 @@ import { ShipsViewToggler } from '../molecules'
 import { NavLinkProps, NavbarProps } from '../types'
 
 
+const SPACEX_LOGO = 'https://www.spacex.com/sites/spacex/files/spacex_logo_white.png'
+
+const linkList = [
+  { path: '/dragon', label: 'Dragon' },
+  { path: '/ships', label: 'Ships' },
+  { path: '/about', label: 'About' },
+]
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: theme.palette.primary.main,
+    },
+    logoWrappper: {
+      minWidth: 180,
     },
     nav: {
       flexGrow: 1,
@@ -52,18 +63,21 @@ const LinkElement = React.memo(({ path, label, className }: NavLinkProps) => (
 export const Navbar = ({ toggleTheme }: NavbarProps) => {
   const classes = useStyles()
 
+  const linksView = linkList.map((obj, k) => (
+    <LinkElement key={k} {...obj} className={classes.link} />
+  ))
+
   return (
     <AppBar position="static" color="inherit" className={classes.root}>
       <Toolbar>
-        <Box>
+        <Box className={classes.logoWrappper}>
           <Link to="/" component={RouterLink}>
-            <img src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png" alt="Home" />
+            <img src={SPACEX_LOGO} alt="Home" />
           </Link>
         </Box>
         <Box component="nav" className={classes.nav}>
           <Box component="ul">
-            <LinkElement path="/ships" label="Ships" className={classes.link} />
-            <LinkElement path="/about" label="About" className={classes.link} />
+            {linksView}
           </Box>
         </Box>
         <ShipsViewToggler />
