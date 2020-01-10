@@ -26,7 +26,7 @@ export const themeConfig: any = {
     palette: {
       type: "dark",
       primary: {
-        main: "#000000",
+        main: "#181c1f",
       },
     },
   },
