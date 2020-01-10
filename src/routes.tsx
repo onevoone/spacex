@@ -5,6 +5,7 @@ import { homeRoutes } from './features/home'
 import { aboutRoutes } from './features/about'
 import { shipsRoutes } from './features/ships'
 import { commonRoutes } from './features/common'
+import { dragonRoutes } from './features/dragon'
 
 
 interface SingleRoute {
@@ -19,7 +20,8 @@ const routes = [
 	...aboutRoutes,
 	...shipsRoutes,
 	...commonRoutes,
-	{ 
+	...dragonRoutes,
+	{
 		path: "**",
 		component: () => <div>not found</div>
 	}
