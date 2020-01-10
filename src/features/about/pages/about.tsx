@@ -1,13 +1,28 @@
 import React from 'react'
-import { Box, Typography, Paper, Link } from '@material-ui/core'
 import { useQuery } from '@apollo/react-hooks'
+import { makeStyles } from '@material-ui/styles'
+import { Box, Typography, Paper, Link, Grid } from '@material-ui/core'
 
 import { Info } from '../types'
 import { GET_INFO } from '../requests'
 import { Loading, Main } from '../../common'
+import { QuickFacts } from '../molecules/quickFacts'
+
+
+const useStyles = makeStyles({
+  root: {
+  },
+  special: {
+    margin: '0 auto',
+    maxWidth: 992,
+    textAlign: 'center',
+  },
+})
+
 
 
 export const About = () => {
+  const classes = useStyles()
   const { loading, data } = useQuery<Info>(GET_INFO)
 
   if (loading) {
@@ -18,6 +33,10 @@ export const About = () => {
 
   return (
     <Main>
+      <Typography component="h2" variant="h5" className={classes.special}>{company.summary}</Typography>
+
+      <QuickFacts company={company} />
+
       <Box>
         <Typography>CEO: {company.ceo}</Typography>
         <Typography>COO: {company.coo}</Typography>
